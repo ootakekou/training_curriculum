@@ -1,5 +1,6 @@
 
-  <%= form_with model: @plan, url: calendars_path, class: 'form' do |f| %>
+
+   <%= form_with model: @plan, url: calendars_path, class: 'form' do |f| %>
     <%= f.label :日付を選択, class: 'lavel' %>
     <%= f.date_field :date, class: 'date-select' %>
     <%= f.label :予定を入力, class: 'lavel' %>
@@ -7,16 +8,15 @@
     <%= f.submit '保存' %>
   <% end %>
 
-
   <div class='calendar'>
     <% @week_days.each do |day| %>
       <div class='item'>
         <div class='date'>
-          <% day[:month] %>/<% day[:date] %>
+          <%= day[:month] %>/<%= day[:date] %><!--＝の追加--><%= day[:wday] %> <!--<%= day[:wday] %> の追加-->
         </div>
         <ul class='content'>
-        <% if day[:plans].length != 0 %>
-          <% day[:plans].each do |plan| %>
+        <% if day[:plan].length != 0 %>   <!--plans→plan変更-->
+          <% day[:plan].each do |plan| %> <!--plans→plan変更-->
             <li class='plan-list'>・<%= plan %></li>
           <% end %>
         <% end %>
